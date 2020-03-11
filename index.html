@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sorteo</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background: #444;
+		}
+		.contenedor{
+			width: 1000px;
+			max-width: 100%;
+			display: flex;
+			margin: auto;
+			margin-top: 50px;
+			color: #fff;
+			font-family: sans-serif;
+		}
+		.concursantes,.ganador{
+			padding: 10px;
+			width: calc(50% - 20px);
+		}
+		.lista{
+			margin-top: 10px;
+		}
+		.item-concursante{
+			background: #45678f;
+			margin-bottom: 5px;
+			padding: 5px;
+			width: calc(100% - 10px);
+		}
+	</style>
+</head>
+<body>
+	<div class="contenedor">
+		<div class="concursantes">
+			<h3>Concursantes</h3>
+			<div class="lista" id="lugar-concursantes">
+			</div>
+			<button onclick="sortear()">Sortear</button>
+		</div>
+		<div class="ganador">
+			<h3>El ganador es: <span id="idganador"></span></h3>
+		</div>
+	</div>
+	<script type="text/javascript">
+		const array_concursantes=
+		[
+			'Daniela Salvador Caballero'
+			,'kamila Villablanca'
+			,'LeoGarcia01'
+			,'Gaspak'
+			,'Oxmar Yamith'
+			,'Mauro Toranzo'
+		];
+		var html='';
+		for (var i = 0; i < array_concursantes.length; i++) {
+			html+='<div class="item-concursante">'+array_concursantes[i]+'</div>';
+		}
+		document.getElementById("lugar-concursantes").innerHTML=html;
+
+		let index=0;
+		function sortear(){
+			let bucle=setInterval(function(){
+				document.getElementById("idganador").innerHTML=array_concursantes[index];
+				if (index==array_concursantes.length-1) {
+					index=0;
+				}else{
+					index++;
+				}
+			},100);
+			setTimeout(function(){
+				clearInterval(bucle);
+				let index_ganador=Math.round(Math.random()*array_concursantes.length)-1;
+				document.getElementById("idganador").innerHTML=array_concursantes[index_ganador];
+			},4000);
+		}
+	</script>
+</body>
+</html>
