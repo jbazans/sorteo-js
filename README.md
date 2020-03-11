@@ -1,2 +1,2 @@
 # sorteo-js
-Proyecto para sorteos muy fáci
+Proyecto para sorteos muy fácil
